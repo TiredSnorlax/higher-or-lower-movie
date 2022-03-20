@@ -1,0 +1,98 @@
+.optionCard {
+    --animHeight: 800px;
+    width: 400px;
+    height: 400px;
+    background: black;
+    border-radius: 10px;
+
+    margin: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    position: relative;
+    overflow: hidden;
+}
+
+.optionCard p {
+    z-index: 10;
+    font-size: 30px;
+}
+
+.optionCard img {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0.8;
+
+    transition: 0.5s;
+}
+
+.optionCard:hover img{
+    transform: scale(1.2);
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(calc(-1 * var(--animHeight))) rotate(45deg);
+    }
+    100% {
+        transform: translateY(var(--animHeight)) rotate(45deg);
+    }
+}
+
+@keyframes slideDownVertical {
+    0% {
+        transform: translateY(calc(-1* var(--animHeight)));
+    }
+    100% {
+        transform: translateY(var(--animHeight));
+    }
+}
+
+.optionCard.show::after {
+    content: "";
+    position: absolute;
+
+    width: 800px;
+    height: 200px;
+    z-index: 100;
+
+    transform: translateY(0) rotate(45deg);
+
+    background: white;
+
+    animation-name: slideDown;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.optionCard.change::after {
+    content: "";
+    position: absolute;
+
+    width: 400px;
+    height: var(--animHeight);
+    z-index: 100;
+
+    transform: translateY(0);
+
+    background: white;
+
+    animation-name: slideDownVertical;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+@media (max-height: 900px) {
+    .optionCard {
+        width: 200px;
+        height: 200px;
+        --animHeight: 400px;
+    }
+    .optionCard p {
+        font-size: 1.2rem;
+    }
+}
